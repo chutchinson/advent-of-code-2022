@@ -1,6 +1,6 @@
 package com.cshutchinson.adventofcode2022
 
-class Day03 : Solution {
+class Day03 : Solver {
     override fun solve (input: Sequence<String>) {
         val rucksacks = input.toList()
         println(first(rucksacks))

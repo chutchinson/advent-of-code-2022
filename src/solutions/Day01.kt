@@ -1,18 +1,18 @@
 package com.cshutchinson.adventofcode2022
 
-class Day01 : Solution {
+class Day01 : Solver {
     override fun solve (input: Sequence<String>) {
         val sumOfCaloriesPerElf = input
-            .map { x -> if (x.isEmpty()) 0 else x.toInt() }
-            .split { x -> x == 0 }
-            .map { x -> x.sum() }
-            .sorted()
+            .split { it.isEmpty() }
+            .map { it.map { it.toInt() }}
+            .map { it.sum() }
+            .sortedDescending()
             .toList()
 
         println(first(sumOfCaloriesPerElf))
         println(second(sumOfCaloriesPerElf))
     }
 
-    fun first (input: Iterable<Int>) = input.maxOrNull()
-    fun second (input: Iterable<Int>) = input.reversed().take(3).sum()
+    fun first (input: Iterable<Int>) = input.first()
+    fun second (input: Iterable<Int>) = input.take(3).sum()
 }
