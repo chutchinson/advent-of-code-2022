@@ -7,7 +7,7 @@ interface Solver {
 class App {
     companion object {
         val solvers = listOf(
-            Day01(), Day02(), Day03()
+            Day01(), Day02(), Day03(), Day04()
         )
 
         @JvmStatic
