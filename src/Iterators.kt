@@ -12,3 +12,15 @@ fun <T> Sequence<T>.split (predicate: (T) -> Boolean): Sequence<List<T>> {
         }
     }
 }
+
+fun <T> Sequence<T>.takeUntil (predicate: (T) -> Boolean): Sequence<T> {
+    return sequence {
+        with (iterator()) {
+            while (hasNext()) {
+                val next = next()
+                yield (next)
+                if (predicate(next)) break
+            }
+        }
+    }
+}
