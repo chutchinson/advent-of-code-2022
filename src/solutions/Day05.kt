@@ -45,7 +45,7 @@ class Day05 : Solver {
                 for (group in matches) {
                     val index = (group!!.range.first - 1) / 4
                     while (stacks.size <= index) stacks.add(ArrayDeque())
-                    stacks[index].add(group!!.value[0])
+                    stacks[index].add(group.value[0])
                 }
             }
             if (state == 1) {
