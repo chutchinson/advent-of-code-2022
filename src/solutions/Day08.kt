@@ -38,7 +38,7 @@ class Grid {
         this.size = Math.sqrt(field.size.toDouble()).toInt()
     }
     
-    inline fun height (x: Int, y: Int): Int = field[y * size + x]
+    fun height (x: Int, y: Int): Int = field[y * size + x]
     
     fun raycast (fromX: Int, fromY: Int, toX: Int, toY: Int, dx: Int, dy: Int): Ray {
         return sequence {
