@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 typealias Action = Triple<Int, Int, Int>
 typealias Stack = ArrayDeque<Char>
 

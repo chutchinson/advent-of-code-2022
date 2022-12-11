@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 class Day01 : Solver {
     override fun solve (input: Sequence<String>) {
         val sumOfCaloriesPerElf = input

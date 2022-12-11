@@ -2,4 +2,9 @@
 .gradle/
 
 inputs/
-bazel*
+build/
+
+# gradle recommends commiting this, but gross
+gradle/
+gradlew
+gradlew.bat

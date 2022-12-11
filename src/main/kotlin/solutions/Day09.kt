@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 import kotlin.math.*
 
 class Day09 : Solver {

@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 enum class Opcode {
     NOOP,
     ADDX

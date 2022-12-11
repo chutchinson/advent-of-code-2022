@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 class Day07 : Solver {
     
     open class Node (val parent: Node?, val children: MutableList<Node>) {

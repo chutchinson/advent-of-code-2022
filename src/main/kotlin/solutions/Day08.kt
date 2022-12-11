@@ -1,5 +1,3 @@
-package com.cshutchinson.adventofcode2022
-
 typealias Ray = Sequence<Int>
 
 class Day08 : Solver {
