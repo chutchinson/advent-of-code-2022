@@ -1,19 +1,18 @@
 class Day11 : Solver {
     
     data class Monkey(
-        val items: ArrayDeque<Long>,
+        val startingItems: ArrayDeque<Long>,
         val worry: (Long) -> Long,
         val divisor: Long,
         val throwTrue: Int,
-        val throwFalse: Int,
-        var inspections: Long)
+        val throwFalse: Int)
 
     override fun solve (input: Sequence<String>) {
         val monkies = input
             .split { it.isEmpty() }
             .map(::toMonkey)
             .toList()
-        
+
         println(first(monkies))
         println(second(monkies))
     }
@@ -39,31 +38,35 @@ class Day11 : Solver {
         val func: (Long) -> Long = when {
             op == "+" && value != "old" -> { x -> x + value.toLong() }
             op == "*" && value != "old" -> { x -> x * value.toLong() }
-            else -> {x -> x * x }
+            else -> { x -> x * x }
         }
 
-        return Monkey(startingItems, func, divisor, ifTrue, ifFalse, 0)
+        return Monkey(startingItems, func, divisor, ifTrue, ifFalse)
     }
 
     private fun monkeyBusiness (monkies: List<Monkey>, n: Int, strategy: (Long) -> Long): Long {
-        fun round (monkey: Monkey) {
-            while (!monkey.items.isEmpty()) {
-                val item = monkey.items.removeFirst()
+        val items = monkies.map { ArrayDeque(it.startingItems) }
+        val inspections = monkies.map { 0L }.toMutableList()
+        
+        fun round (index: Int) {
+            val queue = items[index]
+            val monkey = monkies[index]
+            while (queue.isNotEmpty()) {
+                val item = queue.removeFirst()
                 val worry = strategy(monkey.worry(item))
                 val target = if (worry % monkey.divisor == 0L) monkey.throwTrue else monkey.throwFalse
-                monkies[target].items.addLast(worry)
-                monkey.inspections += 1
+                items[target].addLast(worry)
+                inspections[index] = inspections[index] + 1
             }
         }
-
+        
         for (round in 0 until n) {
-            for (monkey in monkies) {
-                round(monkey)
+            for (index in monkies.indices) {
+                round(index)
             }
         }
 
-        return monkies
-            .map { it.inspections }
+        return inspections
             .sortedByDescending { it }
             .take(2)
             .reduce { acc, count -> acc * count }

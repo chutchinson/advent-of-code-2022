@@ -1,5 +1,7 @@
 .fleet/
 .gradle/
+.idea/
+.vs/
 
 inputs/
 build/
